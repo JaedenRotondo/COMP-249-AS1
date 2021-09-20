@@ -1,5 +1,7 @@
 public class Consumer{ 
-    String maritalStatus;
+    public enum maritalStatus{
+        MARRIED, NONMARRIED 
+    }
     String education;
     private int streetNumber;
     private String streetName;
@@ -96,6 +98,11 @@ public class Consumer{
         Consumer other = (Consumer) obj;
         if (age != other.age)
             return false;
+        if (city == null) {
+            if (other.city != null)
+                return false;
+        } else if (!city.equals(other.city))
+            return false;
         if (education == null) {
             if (other.education != null)
                 return false;
@@ -106,7 +113,30 @@ public class Consumer{
                 return false;
         } else if (!gender.equals(other.gender))
             return false;
+        if (maritalStatus == null) {
+            if (other.maritalStatus != null)
+                return false;
+        } else if (!maritalStatus.equals(other.maritalStatus))
+            return false;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (postalCode == null) {
+            if (other.postalCode != null)
+                return false;
+        } else if (!postalCode.equals(other.postalCode))
+            return false;
+        if (streetName == null) {
+            if (other.streetName != null)
+                return false;
+        } else if (!streetName.equals(other.streetName))
+            return false;
+        if (streetNumber != other.streetNumber)
+            return false;
         return true;
     }
+
 
 }
