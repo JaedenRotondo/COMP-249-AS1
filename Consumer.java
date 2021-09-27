@@ -1,3 +1,8 @@
+// -----------------------------------------------------
+ // Assignment 1
+ // Question: N/A
+ // Written by: Jaeden Rotondo 40160803
+ // -----------------------------------------------------
 public class Consumer{ 
     private enum maritalStatus{
         MARRIED, WIDDOWED, DIVORCED, SEPERATED, SINGLE;
