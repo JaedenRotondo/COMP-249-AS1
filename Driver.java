@@ -63,7 +63,7 @@ public class Driver {
                 System.out.println("Enter Password");
             pass = scan.next();
                 if(loginMethod(pass)){
-                    System.out.println("correct password");
+                    System.out.println("Correct password");
                     break;
                 }
             }
@@ -97,12 +97,35 @@ public class Driver {
             }
             
         }
-            System.out.println("option 1 exited succesful");
+        
         // If option 2 is chosen: 
-        if(num == 2){
+        if(num ==2){
+            for(int i =0; i<3; i++){
+                System.out.println("Enter Password");
+                pass = scan.next();
+                    if(loginMethod(pass)){
+                        System.out.println("correct password");
+                        break;
+                    }
+            }
+            if(!pass.equals(password)){
+                System.out.println("“Program has detected suspicious activity and will terminate immediately!");
+                System.exit(0); 
+            }else{
+                System.out.println("Enter the Consumer # that you wish to alter");
+                int consumerNum= scan.nextInt();
+                if(consumerNum < 0 || consumerNum > consumerDatabase.length){
+                    System.out.println("Consumer # entered does not exist, would you like to try again (Y/N)");
+                    if(scan.next().equals("N")){
+                        menuMethod(); 
+                    }else{
+                        System.out.println("exit");
+                    }
+                }
+            }
 
         }
-
+        
         // If option 3 is chosen:
         if(num == 3){
 
@@ -114,7 +137,9 @@ public class Driver {
         
         // If option 3 is chosen:
         if(num == 5){
-            
+            System.out.println("Thank you for using Consumer Database");
+            System.out.println("The program will no exit...");
+            System.exit(1);
         }
     }
 }
