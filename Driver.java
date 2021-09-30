@@ -6,7 +6,7 @@
 import java.util.Scanner;
 
 public class Driver {
-    
+    static final String password = "password";
     // Every time this method is called, the menu will print and the last number entered by the user will be returned as "num"
     public static int menuMethod(){
         int num;
@@ -34,8 +34,50 @@ public class Driver {
             }else return false;
     }
 
+    public static void optionOne(int conNum, Consumer[] consumerDatabase){
+        String pass = "";
+        Scanner scanOne = new Scanner(System.in);
+        for(int i=0; i<3; i++){
+            System.out.println("Enter Password");
+        pass = scanOne.next();
+            if(loginMethod(pass)){
+                System.out.println("Correct password");
+                break;
+            }
+        }
+        label1: 
+        if(!pass.equals(password)){
+            for(int i=0; i<4; i++){
+                menuMethod();
+                for(int j=0; j<3; j++){
+                    System.out.println("Enter Password");
+                pass = scanOne.next();
+                    if(loginMethod(pass)){
+                        System.out.println("correct password");
+                        break label1;
+                    }
+                }
+               
+            }
+            if(!pass.equals(password)){
+                System.out.println("“Program has detected suspicious activity and will terminate immediately!");
+                System.exit(0); 
+            }
+        }
+        System.out.print("How many users would you like to add? ");
+        conNum = scanOne.nextInt(); 
+        if(conNum <= consumerDatabase.length){
+            System.out.println("Please enter the information of the consumer in the following order...");
+        }
+        while(conNum > consumerDatabase.length){
+            System.out.print("The following number of consumers cannot be added. Try again : ");
+            conNum = scanOne.nextInt(); 
+        }
+    }
+    
+    
     public static void main(String[] args){
-        final String password = "password";
+        
         Consumer consumer1 = new Consumer(152, "Upper Canada Drive", "Toronto", "M2P2A3", 19, "male", "SINGLE");
         Consumer consumer2 = new Consumer(152, "Wagwan", "Toronto", "M2P2A3", 19, "male", "SINGLE");
         System.out.println(consumer1.toString()); 
@@ -59,43 +101,7 @@ public class Driver {
         // If option 1 is chosen: 
         String pass =""; 
         if(num == 1){
-            for(int i=0; i<3; i++){
-                System.out.println("Enter Password");
-            pass = scan.next();
-                if(loginMethod(pass)){
-                    System.out.println("Correct password");
-                    break;
-                }
-            }
-            label1: 
-            if(!pass.equals(password)){
-                for(int i=0; i<4; i++){
-                    menuMethod();
-                    for(int j=0; j<3; j++){
-                        System.out.println("Enter Password");
-                    pass = scan.next();
-                        if(loginMethod(pass)){
-                            System.out.println("correct password");
-                            break label1;
-                        }
-                    }
-                   
-                }
-                if(!pass.equals(password)){
-                    System.out.println("“Program has detected suspicious activity and will terminate immediately!");
-                    System.exit(0); 
-                }
-            }
-            System.out.print("How many users would you like to add? ");
-            conNum = scan.nextInt(); 
-            if(conNum <= consumerDatabase.length){
-                System.out.println("Please enter the information of the consumer in the following order...");
-            }
-            while(conNum > consumerDatabase.length){
-                System.out.print("The following number of consumers cannot be added. Try again : ");
-                conNum = scan.nextInt(); 
-            }
-            
+            optionOne(conNum, consumerDatabase);
         }
         
         // If option 2 is chosen: 
