@@ -5,6 +5,8 @@
  // -----------------------------------------------------
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSplitPaneUI;
+
 public class Driver {
     static final String password = "password";
     // Every time this method is called, the menu will print and the last number entered by the user will be returned as "num"
@@ -65,24 +67,25 @@ public class Driver {
             }
         }
         System.out.print("How many users would you like to add? ");
-        conNum = scanOne.nextInt(); 
-        if(conNum <= consumerDatabase.length){
-            System.out.println("Please enter the information of the consumer in the following order...");
-        }
+        conNum = scanOne.nextInt();
         while(conNum > consumerDatabase.length){
             System.out.print("The following number of consumers cannot be added. Try again : ");
             conNum = scanOne.nextInt(); 
         }
+        
+        for(int i = 0; i< conNum; i++){
+            System.out.println("Please enter the information of the consumer in the following order...");
+            System.out.println("Name, Street Number, Street Name, City, Postal Code, Age (in years), Gender (Male = 1) (Female = 2) (Other =3)");
+            String ConsumerInput = scanOne.next();
+            String[] ConsumerInputArray = ConsumerInput.split(",");
+            consumerDatabase[i] = new Consumer(ConsumerInputArray[0], Integer.valueOf(ConsumerInputArray[1]), ConsumerInputArray[2], ConsumerInputArray[3], ConsumerInputArray[4], Integer.valueOf(ConsumerInputArray[5]), ConsumerInputArray[6]);                                            
+            
+        }
+        
     }
     
     
     public static void main(String[] args){
-        
-        Consumer consumer1 = new Consumer(152, "Upper Canada Drive", "Toronto", "M2P2A3", 19, "male", "SINGLE");
-        Consumer consumer2 = new Consumer(152, "Wagwan", "Toronto", "M2P2A3", 19, "male", "SINGLE");
-        System.out.println(consumer1.toString()); 
-        System.out.println(consumer2.toString());     
-        System.out.println(consumer2.equals(consumer1));
     
 
         // Display a Welcome message: 
@@ -96,56 +99,53 @@ public class Driver {
 
         // Prompt User on Actions 
         System.out.println("\n\n");
-        int num = menuMethod();
+        int num;
 
         // If option 1 is chosen: 
         String pass =""; 
-        if(num == 1){
-            optionOne(conNum, consumerDatabase);
-        }
         
-        // If option 2 is chosen: 
-        if(num ==2){
-            for(int i =0; i<3; i++){
-                System.out.println("Enter Password");
-                pass = scan.next();
-                    if(loginMethod(pass)){
-                        System.out.println("correct password");
-                        break;
+        do{
+            switch(menuMethod()){
+                case 1: 
+                    optionOne(conNum, consumerDatabase);
+                    break; 
+                case 2:
+                    for(int i =0; i<3; i++){
+                        System.out.println("Enter Password");
+                        pass = scan.next();
+                            if(loginMethod(pass)){
+                                System.out.println("correct password");
+                                break;
+                            }
                     }
-            }
-            if(!pass.equals(password)){
-                System.out.println("“Program has detected suspicious activity and will terminate immediately!");
-                System.exit(0); 
-            }else{
-                System.out.println("Enter the Consumer # that you wish to alter");
-                int consumerNum= scan.nextInt();
-                if(consumerNum < 0 || consumerNum > consumerDatabase.length){
-                    System.out.println("Consumer # entered does not exist, would you like to try again (Y/N)");
-                    if(scan.next().equals("N")){
-                        menuMethod(); 
+                    if(!pass.equals(password)){
+                        System.out.println("“Program has detected suspicious activity and will terminate immediately!");
+                        System.exit(0); 
                     }else{
-                        System.out.println("exit");
+                        System.out.println("Enter the Consumer # that you wish to alter");
+                        int consumerNum= scan.nextInt();
+                        if(consumerNum < 0 || consumerNum > consumerDatabase.length){
+                            System.out.println("Consumer # entered does not exist, would you like to try again (Y/N)");
+                            if(scan.next().equals("N")){
+                                menuMethod(); 
+                            }else{
+                                System.out.println("exit");
+                            }
+                        }
                     }
-                }
+                    break;
+                
+                case 3: 
+                case 4: 
+                case 5:
+                    System.out.println("Thank you for using Consumer Database");
+                    System.out.println("The program will now exit...");
+                    System.exit(1);
+                    break; 
+                default:
             }
-
-        }
-        
-        // If option 3 is chosen:
-        if(num == 3){
-
-        }
-        // If option 4 is chosen:
-        if(num == 4){
+        }while(true);
             
-        }
         
-        // If option 3 is chosen:
-        if(num == 5){
-            System.out.println("Thank you for using Consumer Database");
-            System.out.println("The program will no exit...");
-            System.exit(1);
-        }
     }
 }

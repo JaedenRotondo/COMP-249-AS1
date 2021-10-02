@@ -26,8 +26,7 @@ public class Consumer{
     
 
     //Generate Constructor
-    public Consumer(int streetNumber, String streetName, String city, String postalCode, int age, String gender,
-    String name) {
+    public Consumer(String name, int streetNumber, String streetName, String city, String postalCode, int age, String gender) {
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.city = city;
