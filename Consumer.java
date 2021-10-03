@@ -2,6 +2,7 @@
  // Assignment 1
  // Question: N/A
  // Written by: Jaeden Rotondo 40160803
+ // Description can be found in Driver.java
  // -----------------------------------------------------
 public class Consumer{ 
     private enum maritalStatus{
@@ -23,10 +24,18 @@ public class Consumer{
     private String postalCode;
     private int age;
     private String gender;
+    private String maritalStatus;
+    private String education;
     
 
+    public String getEducation() {
+        return education;
+    }
+    public void setEducation(String education) {
+        this.education = education;
+    }
     //Generate Constructor
-    public Consumer(String name, int streetNumber, String streetName, String city, String postalCode, int age, String gender) {
+    public Consumer(String name, int streetNumber, String streetName, String city, String postalCode, int age, String gender, String education) {
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.city = city;
@@ -34,6 +43,8 @@ public class Consumer{
         this.age = age;
         this.gender = gender;
         this.name = name;
+        this.education = education;
+
     }
     // Generate Getters and Setters
     public String getName() {
@@ -104,6 +115,14 @@ public class Consumer{
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
+
+    public String getMaritalStatus(){
+        return maritalStatus;
+    }
    
     // Generate equals() method
     @Override
@@ -124,12 +143,14 @@ public class Consumer{
             return false;
         return true;
     }
+    
 
      // Generate toString Method
      @Override
      public String toString() {
-         return "Consumer [age=" + age + ", city=" + city + ", gender=" + gender + ", name=" + name + ", postalCode="
-                 + postalCode + ", streetName=" + streetName + ", streetNumber=" + streetNumber + "]";
+         return "Consumer [age=" + age + ", city=" + city + ", education=" + education + ", gender=" + gender
+                 + ", maritalStatus=" + maritalStatus + ", name=" + name + ", postalCode=" + postalCode + ", streetName="
+                 + streetName + ", streetNumber=" + streetNumber + "]";
      }
  
 
