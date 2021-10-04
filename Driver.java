@@ -20,8 +20,6 @@ import java.util.Scanner;
 public class Driver {
     static final String password = "password"; // Constant password
 
-    // Every time this method is called, the menu will print and the last number
-    // entered by the user will be returned as "num"
     private static int consumerCount = 0; // The number of users already inputted into the system
 
     public static int getConsumerCount() {
