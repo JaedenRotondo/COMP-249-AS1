@@ -9,7 +9,6 @@
  * Add consumers, alter the data found within each consumer, find consumers based on their age, gender and education status
  * The program is secured via password protected options at the menu
  * @author Jaeden Rotondo
- * 
  */
  
 
